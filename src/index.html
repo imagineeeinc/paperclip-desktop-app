@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Paperclip</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+		<style>
+			body[data-theme=light] {
+				--background: rgb(240, 248, 255);
+				--color: rgb(0, 7, 10);
+				--accent: rgb(0, 59, 70);
+				--white: var(--background);
+			}
+			body[data-theme=dark] {
+				--background: rgb(10, 19, 28);
+				--color: rgb(195, 203, 207);
+				--accent: rgb(0, 105, 123);
+				--white: rgb(21, 21, 21);
+			}
+			body[data-theme=black] {
+				--background: rgb(0, 0, 0);
+				--color: rgb(199, 199, 199);
+				--accent: rgb(0, 108, 128);
+				--white: rgb(0, 0, 0);
+			}
+			body[data-theme=dark] .traffic > img {
+				filter: invert(1);
+			}
+			body[data-theme=black] .traffic > img {
+				filter: invert(1);
+			}
+			@media (prefers-color-scheme: light) {
+				body[data-theme=system] {
+					--background: rgb(240, 248, 255);
+					--color: rgb(0, 7, 10);
+					--accent: rgb(0, 59, 70);
+					--white: var(--background);
+				}
+				body[data-theme=system] .traffic > img {
+					filter: invert(1);
+				}
+			}
+			@media (prefers-color-scheme: dark) {
+				body[data-theme=system] {
+					--background: rgb(10, 19, 28);
+					--color: rgb(195, 203, 207);
+					--accent: rgb(0, 77, 90);
+					--white: rgb(21, 21, 21);
+				}
+				body[data-theme=system] .traffic > img {
+					filter: invert(1);
+				}
+			}
+			body {
+				font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+				font-weight: 600;
+				--background: rgb(240, 248, 255);
+				--color: rgb(0, 7, 10);
+				--accent: rgb(0, 59, 70);
+				--white: var(--background);
+				background-color: var(--background);
+			}
+			#toolbar {
+				height: 30px;
+				-webkit-app-region: drag;
+			}
+			#right-bar {
+				position: fixed;
+				top: 0;
+				right: 0;
+				height: 30px;
+				padding: 0;
+				background-color: transparent;
+				-webkit-app-region: no-drag;
+				user-select: none;
+			}
+			.traffic {
+				height: 29px;
+				width: 29px;
+				margin: 0;
+				padding: 0;
+				border: none;
+				background-color: var(--background);
+				outline: none;
+				cursor: pointer;
+				padding: 5px;
+			}
+			.traffic:hover {
+				border: 1px solid var(--color) !important;
+			}
+			.traffic > img {
+				height: 100%;
+				width: 100%;
+			}
+		</style>
+</head>
+<body>
+    <div id="toolbar">
+			<!-- <span id="name">Paperclip</span> -->
+			<div id="right-bar">
+				<button class="traffic" onclick="minimize()"><img src="./minimize.svg"></button>
+				<button class="traffic" onclick="maximize()"><img src="./maximize.svg"></button>
+				<button class="traffic" onclick="closeWin()"><img src="./close.svg"></button>
+			</div>
+		</div>
+		<script>
+			const { ipcRenderer } = require('electron')
+			document.body.onkeydown = function(e) {
+				let key = e.key.toLowerCase()
+				if (key == 'r' && e.ctrlKey) {
+					e.preventDefault()
+				}
+				if (key == 'i' && e.ctrlKey && e.shiftKey) {
+					ipcRenderer.send('devtools')
+				}
+			}
+			function maximize() {
+					ipcRenderer.send('maximize')
+			}
+			function minimize() {
+				ipcRenderer.send('minimize')
+			}
+			function closeWin() {
+				ipcRenderer.send('close')
+			}
+			function openLink(url) {
+				ipcRenderer.send('openLink', url)
+			}
+			ipcRenderer.on('setTheme', (event, arg) => {
+				document.body.dataset.theme = arg
+			})
+		</script>
+</body>
+</html>

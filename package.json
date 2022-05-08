@@ -1,0 +1,130 @@
+{
+  "name": "paperclip-desktop",
+  "version": "1.1.0",
+  "private": true,
+  "description": "the desktop app for the paperclip notebook app",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder -m -l -w",
+    "dist-win": "electron-builder --win",
+    "dist-xwin": "electron-builder --win --x64",
+    "dist-win-32": "electron-builder --win --ia32",
+    "dist-win-all": "electron-builder --win --ia32 --armv7l --arm64",
+    "dist-mac": "electron-builder --mac",
+    "dist-linux": "electron-builder --linux"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imagineeeinc/paperclip-desktop-app.git"
+  },
+  "author": "imagineeeinc <imagineeeinc@users.noreply.github.com> ",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/imagineeeinc/paperclip-desktop-app/issues"
+  },
+  "homepage": "https://github.com/imagineeeinc/paperclip-desktop-app#readme",
+  "devDependencies": {
+    "electron": "^10.4.7",
+    "electron-builder": "^22.11.7"
+  },
+  "build": {
+    "appId": "paperclip",
+    "productName": "Paperclip",
+    "copyright": "Copyright © 2022 Imagineee",
+    "mac": {
+      "category": "public.app-category.productivity",
+      "darkModeSupport": true,
+      "target": [
+        "default",
+        "dmg",
+        "zip",
+        "mas",
+        "pkg"
+      ]
+    },
+    "win": {
+      "publisherName": "Imagineee",
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64",
+            "ia32",
+            "armv7l",
+            "arm64"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "x64",
+            "ia32",
+            "armv7l",
+            "arm64"
+          ]
+        },
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32",
+            "armv7l",
+            "arm64"
+          ]
+        }
+      ]
+    },
+    "linux": {
+      "category": "Productivity",
+      "target": [
+        {
+          "target": "zip",
+          "arch": [
+            "x64",
+            "ia32",
+            "armv7l",
+            "arm64"
+          ]
+        },
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64",
+            "ia32",
+            "armv7l",
+            "arm64"
+          ]
+        },
+        {
+          "target": "apk",
+          "arch": [
+            "x64",
+            "ia32",
+            "armv7l",
+            "arm64"
+          ]
+        },
+        {
+          "target": "deb",
+          "arch": [
+            "x64",
+            "ia32",
+            "armv7l",
+            "arm64"
+          ]
+        },
+        {
+          "target": "rpm",
+          "arch": [
+            "x64",
+            "ia32",
+            "armv7l",
+            "arm64"
+          ]
+        }
+      ]
+    }
+  }
+}
