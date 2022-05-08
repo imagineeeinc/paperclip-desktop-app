@@ -38,7 +38,8 @@
       "darkModeSupport": true,
       "target": [
         "default",
-        "dmg"
+        "dmg",
+        "zip"
       ]
     },
     "win": {
