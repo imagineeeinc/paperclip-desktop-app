@@ -3,7 +3,14 @@ name: Build/release
 on: 
   release:
     types: [published, unpublished, edited]
-  workflow_dispatch  
+  workflow_dispatch:
+    inputs:
+      JustRun:
+        description: 'Just run'     
+        required: false
+        default: 'none'
+      tags:
+        description: 'no tags'  
 
 jobs:
   release:
