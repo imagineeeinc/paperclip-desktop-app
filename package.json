@@ -39,7 +39,7 @@
       "target": [
         "default",
         "dmg",
-        "zip",
+        "zip"
       ]
     },
     "win": {
