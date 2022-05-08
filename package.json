@@ -40,8 +40,7 @@
         "default",
         "dmg",
         "zip",
-        "mas",
-        "pkg"
+        "mas"
       ]
     },
     "win": {
