@@ -5,12 +5,7 @@ on:
     types: [published, unpublished, edited]
   workflow_dispatch:
     inputs:
-      JustRun:
-        description: 'Just run'     
-        required: false
-        default: 'none'
       tags:
-        description: 'no tags'  
 
 jobs:
   release:
