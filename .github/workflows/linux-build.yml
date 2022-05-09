@@ -4,8 +4,6 @@ on:
   release:
     types: [published, unpublished, edited]
   workflow_dispatch:
-    inputs:
-      tags:
 
 jobs:
   release:
@@ -19,7 +17,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 16
-      - run: npm i
 
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1
