@@ -41,6 +41,9 @@ const createWindow = () => {
     if (name == 'theme') {
       win.webContents.send('setTheme', arg)
     }
+    if (name == 'title') {
+      win.setTitle(arg)
+    }
   })
 }
 app.whenReady().then(() => {
