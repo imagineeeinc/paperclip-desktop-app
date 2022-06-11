@@ -25,3 +25,5 @@ jobs:
 
       - name: Build executable
         run: npm run release
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
