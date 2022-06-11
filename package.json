@@ -13,7 +13,8 @@
     "dist-win-32": "electron-builder --win --ia32",
     "dist-win-all": "electron-builder --win --ia32 --armv7l --arm64",
     "dist-mac": "electron-builder --mac",
-    "dist-linux": "electron-builder --linux"
+    "dist-linux": "electron-builder --linux",
+    "release": "electron-builder --publish always"
   },
   "repository": {
     "type": "git",
