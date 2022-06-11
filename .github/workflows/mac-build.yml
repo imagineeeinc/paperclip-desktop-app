@@ -1,16 +1,13 @@
-name: Build/release
+name: MacBuild/release
 
 on: 
   release:
     types: [published, unpublished, edited]
+  workflow_dispatch:
 
 jobs:
   release:
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [macos-latest, ubuntu-latest, windows-latest]
+    runs-on: macos-latest
 
     steps:
       - name: Check out Git repository
@@ -20,7 +17,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 16
-      - run: npm i
 
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1

@@ -40,9 +40,7 @@
       "target": [
         "default",
         "dmg",
-        "zip",
-        "mas",
-        "pkg"
+        "zip"
       ]
     },
     "win": {
@@ -53,7 +51,6 @@
           "arch": [
             "x64",
             "ia32",
-            "armv7l",
             "arm64"
           ]
         },
@@ -62,7 +59,6 @@
           "arch": [
             "x64",
             "ia32",
-            "armv7l",
             "arm64"
           ]
         },
@@ -71,7 +67,6 @@
           "arch": [
             "x64",
             "ia32",
-            "armv7l",
             "arm64"
           ]
         }
