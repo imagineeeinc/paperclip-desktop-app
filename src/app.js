@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, BrowserView, shell } = require('electron')
+const { app, BrowserWindow, ipcMain, BrowserView, shell, autoUpdater } = require('electron')
 var view
 const createWindow = () => {
   const win = new BrowserWindow({
@@ -73,6 +73,12 @@ ipcMain.on('devtools', (event, arg) => {
     view.webContents.openDevTools()
   }
 })
+
+const updateServer = "https://paperclip-desktop-update-server.vercel.app/"
+const url = `${updateServer}/update/${process.platform}/${app.getVersion()}`
+
+autoUpdater.setFeedURL({ url })
+
 /* app.setAsDefaultProtocolClient('paper-clip');
 app.on('open-url', function (event, data) {
   event.preventDefault();
