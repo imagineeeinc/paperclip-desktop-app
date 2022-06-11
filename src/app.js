@@ -14,7 +14,7 @@ const createWindow = () => {
     webPreferences: {
       spellcheck: true,
 			nodeIntegration: true,
-      devTools: false
+      //devTools: false
     }
   })
 
@@ -43,6 +43,7 @@ const createWindow = () => {
     }
     if (name == 'title') {
       win.setTitle(arg)
+      win.webContents.send('title', arg)
     }
   })
 }
