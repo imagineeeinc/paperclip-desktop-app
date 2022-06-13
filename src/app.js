@@ -14,7 +14,7 @@ const createWindow = () => {
     webPreferences: {
       spellcheck: true,
 			nodeIntegration: true,
-      //devTools: false
+      devTools: false
     }
   })
 
@@ -29,8 +29,8 @@ const createWindow = () => {
   win.setBrowserView(view)
   view.setBounds({ x: 0, y: 30, width: 930, height: 800 - 30 })
   //if development
-  view.webContents.loadURL('http://localhost:3000/app/')
-  // view.webContents.loadURL('https://paper-clip.web.app/app/')
+  // view.webContents.loadURL('http://localhost:3000/app/')
+  view.webContents.loadURL('https://paper-clip.web.app/app/')
 	view.setAutoResize({ width: true, height: true })
   view.webContents.on('new-window', (event, url) => {
     event.preventDefault()
