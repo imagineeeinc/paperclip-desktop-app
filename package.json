@@ -1,11 +1,12 @@
 {
   "name": "paperclip-desktop",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "private": true,
   "description": "the desktop app for the paperclip notebook app",
   "main": "src/app.js",
   "scripts": {
     "start": "electron .",
+    "win-test": "set DEV=true && electron .",
     "pack": "electron-builder --dir",
     "dist": "electron-builder -m -l -w",
     "dist-win": "electron-builder --win",
