@@ -23,7 +23,8 @@ const createWindow = () => {
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
-      enableRemoteModule: true
+      enableRemoteModule: true,
+      spellcheck: true
     }
   })
   win.setBrowserView(view)
@@ -48,6 +49,56 @@ const createWindow = () => {
       win.setTitle(arg)
       win.webContents.send('title', arg)
     }
+  })
+
+  //spell check
+  const { Menu, MenuItem } = require('electron')
+
+  view.webContents.on('context-menu', (event, params) => {
+    const spellMenu = new Menu()
+
+    // Add each spelling suggestion
+    for (const suggestion of params.dictionarySuggestions) {
+      spellMenu.append(new MenuItem({
+        label: suggestion,
+        click: () => view.webContents.replaceMisspelling(suggestion)
+      }))
+    }
+
+    // Allow users to add the misspelled word to the dictionary
+    if (params.misspelledWord) {
+      spellMenu.append(
+        new MenuItem({
+          label: 'Add to dictionary',
+          click: () => view.webContents.session.addWordToSpellCheckerDictionary(params.misspelledWord)
+        })
+      )
+    }
+
+    const menu = new Menu()
+    menu.append(new MenuItem({
+      role: 'cut'
+    }))
+    menu.append(new MenuItem({
+      role: 'copy'
+    }))
+    menu.append(new MenuItem({
+      role: 'paste'
+    }))
+    menu.append(new MenuItem({
+      role: 'selectAll'
+    }))
+    if (params.misspelledWord) {
+      menu.append(new MenuItem({
+        type: 'separator'
+      }))
+      menu.append(new MenuItem({ 
+        label: 'Spell Check',
+        submenu: spellMenu
+      }))
+    }
+
+    menu.popup()
   })
 }
 app.whenReady().then(() => {
