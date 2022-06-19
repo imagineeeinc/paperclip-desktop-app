@@ -35,6 +35,10 @@
     "appId": "paperclip",
     "productName": "Paperclip",
     "copyright": "Copyright © 2022 Imagineee",
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
     "mac": {
       "category": "public.app-category.productivity",
       "darkModeSupport": true,
