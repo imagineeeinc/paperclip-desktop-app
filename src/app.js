@@ -55,11 +55,11 @@ const createWindow = () => {
   const { Menu, MenuItem } = require('electron')
 
   view.webContents.on('context-menu', (event, params) => {
-    const spellMenu = new Menu()
+    const menu = new Menu()
 
     // Add each spelling suggestion
     for (const suggestion of params.dictionarySuggestions) {
-      spellMenu.append(new MenuItem({
+      menu.append(new MenuItem({
         label: suggestion,
         click: () => view.webContents.replaceMisspelling(suggestion)
       }))
@@ -67,15 +67,19 @@ const createWindow = () => {
 
     // Allow users to add the misspelled word to the dictionary
     if (params.misspelledWord) {
-      spellMenu.append(
+      menu.append(
         new MenuItem({
-          label: 'Add to dictionary',
+          label: 'Add to dictionary...',
           click: () => view.webContents.session.addWordToSpellCheckerDictionary(params.misspelledWord)
         })
       )
     }
 
-    const menu = new Menu()
+    if (params.misspelledWord) {
+      menu.append(new MenuItem({
+        type: 'separator'
+      }))
+    }
     menu.append(new MenuItem({
       role: 'cut'
     }))
@@ -88,15 +92,6 @@ const createWindow = () => {
     menu.append(new MenuItem({
       role: 'selectAll'
     }))
-    if (params.misspelledWord) {
-      menu.append(new MenuItem({
-        type: 'separator'
-      }))
-      menu.append(new MenuItem({ 
-        label: 'Spell Check',
-        submenu: spellMenu
-      }))
-    }
 
     menu.popup()
   })
@@ -136,7 +131,9 @@ const updateServer = "https://paperclip-desktop-update-server.vercel.app/"
 const url = `${updateServer}/update/${process.platform}/${app.getVersion()}`
 
 autoUpdater.setFeedURL({ url })
-autoUpdater.checkForUpdates()
+if (!process.env.DEV) {
+  autoUpdater.checkForUpdates()
+}
 
 /* app.setAsDefaultProtocolClient('paper-clip');
 app.on('open-url', function (event, data) {

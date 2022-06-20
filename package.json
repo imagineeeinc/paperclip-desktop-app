@@ -1,6 +1,6 @@
 {
   "name": "paperclip-desktop",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "private": true,
   "description": "the desktop app for the paperclip notebook app",
   "main": "src/app.js",
