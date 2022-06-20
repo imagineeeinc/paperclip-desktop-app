@@ -136,6 +136,7 @@ const updateServer = "https://paperclip-desktop-update-server.vercel.app/"
 const url = `${updateServer}/update/${process.platform}/${app.getVersion()}`
 
 autoUpdater.setFeedURL({ url })
+autoUpdater.checkForUpdates()
 
 /* app.setAsDefaultProtocolClient('paper-clip');
 app.on('open-url', function (event, data) {
