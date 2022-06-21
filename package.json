@@ -29,8 +29,7 @@
   "homepage": "https://github.com/imagineeeinc/paperclip-desktop-app#readme",
   "devDependencies": {
     "electron": "^10.4.7",
-    "electron-builder": "^22.11.7",
-    "electron-builder-squirrel-windows": "^23.2.0"
+    "electron-builder": "^22.11.7"
   },
   "build": {
     "appId": "paperclip",
